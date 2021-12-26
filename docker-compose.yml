@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  front_app:
+    build: ./front/.
+    restart: on-failure
+    ports:
+      - "8080:8080"
+
+  cloud_app:
+    build: .
+    links:
+      - "front_app"
+    restart: on-failure
+    ports:
+      - "5500:5500"
+    volumes:
+      - "./mydb:/mydb"
+      - "./files:/files"

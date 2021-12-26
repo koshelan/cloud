@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+
+    <changeSet author="andrey" id="error_msg_repository">
+        <createTable tableName="error">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="massage" type="varchar(255)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="andrey" id="user_repository">
+        <createTable tableName="user">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="login" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="version" type="bigint(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="andrey" id="add_unique_constraint_user">
+        <addUniqueConstraint tableName="User"
+                             constraintName="unique_constraint_user"
+                             columnNames="login, password"
+        />
+    </changeSet>
+
+    <changeSet author="andrey" id="add_users">
+        <insert tableName="user">
+            <column name="login" value="user1"/>
+            <column name="password" value="pass"/>
+            <column name="version" value="0"/>
+        </insert>
+        <insert tableName="user">
+            <column name="login" value="user2"/>
+            <column name="password" value="pass"/>
+            <column name="version" value="0"/>
+        </insert>
+        <insert tableName="user">
+            <column name="login" value="user3"/>
+            <column name="password" value="pass"/>
+            <column name="version" value="0"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="andrey" id="add_more_users">
+        <insert tableName="user">
+            <column name="login" value="123"/>
+            <column name="password" value="123"/>
+            <column name="version" value="0"/>
+        </insert>
+        <insert tableName="user">
+            <column name="login" value="111"/>
+            <column name="password" value="111"/>
+            <column name="version" value="0"/>
+        </insert>
+        <insert tableName="user">
+            <column name="login" value="aaa"/>
+            <column name="password" value="aaa"/>
+            <column name="version" value="0"/>
+        </insert>
+    </changeSet>
+
+
+
+</databaseChangeLog>
+
